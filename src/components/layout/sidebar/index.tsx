@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Pen } from "lucide-react";
-import { useState } from "react";
-import { ButtonConfigs } from "./types";
+import { FC } from "react";
 import { ButtonConfigSlider } from "./button-config-slider";
 import { ConfigSliderProps } from "./button-config-slider/types";
+import { useButtonConfigs } from "@/context/useButtonConfigs";
 
-export const Sidebar = () => {
-  const [buttonConfigs, setButtonConfigs] = useState<ButtonConfigs>();
+export const Sidebar: FC = () => {
+  const { buttonConfigs, setButtonConfigs } = useButtonConfigs();
 
   const widthSliderConfig: ConfigSliderProps = {
     label: "Width",
@@ -22,10 +22,24 @@ export const Sidebar = () => {
     sliderDesc: `${buttonConfigs?.width ?? 0}px`,
   };
 
+  const heightSliderConfig: ConfigSliderProps = {
+    label: "Height",
+    sliderConfig: {
+      min: 0,
+      max: 400,
+      step: 1,
+      onValueChange: (value) => {
+        setButtonConfigs((v) => ({ ...v, height: value[0] }));
+      },
+    },
+    sliderDesc: `${buttonConfigs?.height ?? 0}px`,
+  };
+
   return (
-    <aside className="w-80 space-y-6">
-      <form className="space-y-6">
+    <aside className="w-80 space-y-6 flex gap-3">
+      <form className="space-y-6 w-80">
         <ButtonConfigSlider {...widthSliderConfig} />
+        <ButtonConfigSlider {...heightSliderConfig} />
 
         <Separator />
 
@@ -34,6 +48,7 @@ export const Sidebar = () => {
           Gerar Código
         </Button>
       </form>
+      <Separator orientation="vertical" className="h-full" />
     </aside>
   );
 };
