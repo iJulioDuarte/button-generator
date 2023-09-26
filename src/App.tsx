@@ -30,20 +30,16 @@ export const App = () => {
         <Sidebar />
 
         <div className="flex flex-col flex-1 gap-4">
-          <p className="text-sm text-muted-foreground">
-            {Object.keys(buttonConfigs).map((key) => {
-              const keyAsKeyof = key as keyof typeof buttonConfigs;
-              if (buttonConfigs?.[keyAsKeyof]) {
-                return (
-                  <div className="flex gap-2">
-                    <span>{key}:</span>{" "}
-                    <span>{`${buttonConfigs[keyAsKeyof]}`}</span>
-                  </div>
-                );
-              }
-              return null;
-            })}
-          </p>
+          <button
+            style={{
+              height: buttonConfigs.height,
+              width: buttonConfigs.width,
+              background: "black",
+              borderRadius: buttonConfigs.borderRadius,
+            }}
+          >
+            {buttonConfigs.label}
+          </button>
         </div>
       </main>
     </div>

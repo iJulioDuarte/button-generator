@@ -5,6 +5,8 @@ import { FC } from "react";
 import { ButtonConfigSlider } from "./button-config-slider";
 import { ConfigSliderProps } from "./button-config-slider/types";
 import { useButtonConfigs } from "@/context/useButtonConfigs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export const Sidebar: FC = () => {
   const { buttonConfigs, setButtonConfigs } = useButtonConfigs();
@@ -34,12 +36,29 @@ export const Sidebar: FC = () => {
     },
     sliderDesc: `${buttonConfigs?.height ?? 0}px`,
   };
+  const borderRadiusSliderConfig: ConfigSliderProps = {
+    label: "Border Radius",
+    sliderConfig: {
+      min: 0,
+      max: 50,
+      step: 1,
+      onValueChange: (value) => {
+        setButtonConfigs((v) => ({ ...v, borderRadius: value[0] }));
+      },
+    },
+    sliderDesc: `${buttonConfigs?.borderRadius ?? 0}px`,
+  };
 
   return (
     <aside className="w-80 space-y-6 flex gap-3">
       <form className="space-y-6 w-80">
+        <Label>Label</Label>
+        <Input
+          onChange={(value) => setButtonConfigs({ label: value.target.value })}
+        />
         <ButtonConfigSlider {...widthSliderConfig} />
         <ButtonConfigSlider {...heightSliderConfig} />
+        <ButtonConfigSlider {...borderRadiusSliderConfig} />
 
         <Separator />
 
