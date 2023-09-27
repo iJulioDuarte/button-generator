@@ -3,8 +3,9 @@ export type ButtonConfigs = {
   width?: number;
   height?: number;
   borderRadius?: number;
-  backgroundColor?: unknown;
-  color?: unknown;
+  backgroundColor?: string;
+  color?: string;
+  fontSize?: number;
   borderWidth?: number;
-  borderColor?: unknown;
+  borderColor?: string;
 };

@@ -1,10 +1,12 @@
+import { SliderProps as RadixSliderProps } from "@radix-ui/react-slider";
+
+type SliderProps = Omit<
+  RadixSliderProps & React.RefAttributes<HTMLSpanElement>,
+  "ref"
+>;
+
 export type ConfigSliderProps = {
   label: string;
-  sliderConfig: {
-    min: number;
-    max: number;
-    step: number;
-    onValueChange?(value: number[]): void;
-  };
+  sliderConfig: SliderProps;
   sliderDesc?: string;
 };

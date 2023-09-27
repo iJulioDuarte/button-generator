@@ -29,17 +29,8 @@ export const App = () => {
       <main className="flex-1 p-6 flex gap-6">
         <Sidebar />
 
-        <div className="flex flex-col flex-1 gap-4">
-          <button
-            style={{
-              height: buttonConfigs.height,
-              width: buttonConfigs.width,
-              background: "black",
-              borderRadius: buttonConfigs.borderRadius,
-            }}
-          >
-            {buttonConfigs.label}
-          </button>
+        <div className="flex flex-col flex-1 gap-4 items-center justify-center">
+          <button style={{ ...buttonConfigs }}>{buttonConfigs.label}</button>
         </div>
       </main>
     </div>
