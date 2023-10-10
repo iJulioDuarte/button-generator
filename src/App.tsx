@@ -2,7 +2,7 @@ import { Github } from "lucide-react";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
 import { Sidebar } from "./components/layout/sidebar";
-import { useButtonConfigs } from "./context/useButtonConfigs";
+import { useButtonConfigs } from "./context/use-button-configs";
 
 export const App = () => {
   const { buttonConfigs } = useButtonConfigs();
