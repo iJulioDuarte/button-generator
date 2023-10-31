@@ -13,7 +13,15 @@ import { useSliderConfigs } from "./hooks/use-slider-configs";
 import { ColorPicker } from "./color-picker";
 
 export const Sidebar: FC = () => {
-  const { setlabel } = useButtonConfigs();
+  const {
+    setlabel,
+    color,
+    setcolor,
+    backgroundColor,
+    setbackgroundColor,
+    borderColor,
+    setborderColor,
+  } = useButtonConfigs();
 
   const {
     borderRadiusSliderConfig,
@@ -48,12 +56,31 @@ export const Sidebar: FC = () => {
   const colorPickersSection = useMemo(
     () => (
       <section id="color-pickers" className="flex flex-col gap-2 space-y-3">
-        <ColorPicker colorPickerName="bg-color" title="Background Color" />
-        <ColorPicker colorPickerName="border-color" title="Border Color" />
-        <ColorPicker colorPickerName="text-color" title="Text Color" />
+        <ColorPicker
+          color={backgroundColor ?? ""}
+          setColorFunction={setbackgroundColor}
+          title="Background Color"
+        />
+        <ColorPicker
+          color={borderColor ?? ""}
+          setColorFunction={setborderColor}
+          title="Border Color"
+        />
+        <ColorPicker
+          color={color ?? ""}
+          setColorFunction={setcolor}
+          title="Text Color"
+        />
       </section>
     ),
-    []
+    [
+      backgroundColor,
+      borderColor,
+      color,
+      setbackgroundColor,
+      setborderColor,
+      setcolor,
+    ]
   );
 
   const labelInputSection = useMemo(

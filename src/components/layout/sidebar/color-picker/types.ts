@@ -1,6 +1,5 @@
-import { ColorPickers } from "../types";
-
 export type ColorPickerProps = {
-  colorPickerName: ColorPickers;
+  color: string;
   title: string;
+  setColorFunction(newValue: string): void;
 };

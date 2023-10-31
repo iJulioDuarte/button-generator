@@ -1,1 +1,1 @@
-export type ColorPickers = "bg-color" | "border-color" | "text-color";
+export type ColorPickers = "backgroundColor" | "borderColor" | "color";
