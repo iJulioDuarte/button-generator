@@ -1,12 +1,24 @@
-import { ButtonConfigs } from "@/components/layout/sidebar/types";
-import { SetStateAction } from "react";
-
-export type States = {
-  buttonConfigs: ButtonConfigs;
+export type ButtonConfigs = {
+  label?: string;
+  width?: number;
+  height?: number;
+  borderRadius?: number;
+  backgroundColor?: string;
+  color?: string;
+  fontWeight?: number;
+  fontSize?: number;
+  borderWidth?: number;
+  borderColor?: string;
 };
 
-export type Actions = {
-  setButtonConfigs(newConfigs: SetStateAction<ButtonConfigs>): void;
+type ButtonConfigToSetFunctions<TData> = {
+  [key in keyof TData & string as `set${key}`]: (
+    newValue: NonNullable<TData[key]>
+  ) => void;
 };
+
+export type States = ButtonConfigs;
+
+export type Actions = ButtonConfigToSetFunctions<ButtonConfigs>;
 
 export type UseButtonConfigsType = States & Actions;

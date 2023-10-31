@@ -5,7 +5,7 @@ import { Sidebar } from "./components/layout/sidebar";
 import { useButtonConfigs } from "./context/use-button-configs";
 
 export const App = () => {
-  const { buttonConfigs } = useButtonConfigs();
+  const buttonConfigs = useButtonConfigs();
 
   return (
     <div className="min-w-screen min-h-screen flex flex-col">

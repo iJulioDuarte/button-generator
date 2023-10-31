@@ -5,12 +5,13 @@ import {
 } from "@/components/ui/popover";
 import { useButtonConfigs } from "@/context/use-button-configs";
 import { Sketch } from "@uiw/react-color";
-import { FC, useCallback, useState } from "react";
-import { ButtonConfigs, ColorPickers } from "../types";
+import { FC, memo, useCallback, useState } from "react";
+import { ColorPickers } from "../types";
 import { ColorPickerProps } from "./types";
 import "./styles.css";
+import { ButtonConfigs } from "@/context/use-button-configs/types";
 
-export const ColorPicker: FC<ColorPickerProps> = (props) => {
+export const ColorPicker: FC<ColorPickerProps> = memo((props) => {
   const { colorPickerName, title } = props;
 
   const configKey: keyof ButtonConfigs =
@@ -20,7 +21,10 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
       ? "borderColor"
       : "color";
 
-  const { buttonConfigs, setButtonConfigs } = useButtonConfigs();
+  const setFunctionConfigKey = ("set" +
+    configKey) as keyof typeof buttonConfigs;
+
+  const buttonConfigs = useButtonConfigs();
 
   const [openColorPickers, setOpenColorPickers] = useState<ColorPickers[]>([]);
 
@@ -45,13 +49,13 @@ export const ColorPicker: FC<ColorPickerProps> = (props) => {
           disableAlpha
           color={buttonConfigs[configKey]}
           onChange={(color) => {
-            setButtonConfigs((v) => ({
-              ...v,
-              [configKey]: color.hex,
-            }));
+            if (setFunctionConfigKey in buttonConfigs)
+              (buttonConfigs[setFunctionConfigKey] as CallableFunction)(
+                color.hex
+              );
           }}
         />
       </PopoverContent>
     </Popover>
   );
-};
+});

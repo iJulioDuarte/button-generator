@@ -1,6 +1,5 @@
 import { create } from "zustand";
-import { UseButtonConfigsType } from "./types";
-import { ButtonConfigs } from "@/components/layout/sidebar/types";
+import { ButtonConfigs, UseButtonConfigsType } from "./types";
 
 export const sliderDefaultValues: ButtonConfigs = {
   label: "New Button",
@@ -13,10 +12,16 @@ export const sliderDefaultValues: ButtonConfigs = {
   backgroundColor: "#000",
 };
 
-export const useButtonConfigs = create<UseButtonConfigsType>((set, get) => ({
-  buttonConfigs: sliderDefaultValues,
-  setButtonConfigs: (newConfig) =>
-    typeof newConfig === "function"
-      ? set({ buttonConfigs: newConfig(get().buttonConfigs) })
-      : set({ buttonConfigs: newConfig }),
+export const useButtonConfigs = create<UseButtonConfigsType>((set) => ({
+  ...sliderDefaultValues,
+  setbackgroundColor: (backgroundColor) => set({ backgroundColor }),
+  setborderColor: (borderColor) => set({ borderColor }),
+  setborderRadius: (borderRadius) => set({ borderRadius }),
+  setborderWidth: (borderWidth) => set({ borderWidth }),
+  setcolor: (color) => set({ color }),
+  setfontSize: (fontSize) => set({ fontSize }),
+  setfontWeight: (fontWeight) => set({ fontWeight }),
+  setheight: (height) => set({ height }),
+  setlabel: (label) => set({ label }),
+  setwidth: (width) => set({ width }),
 }));

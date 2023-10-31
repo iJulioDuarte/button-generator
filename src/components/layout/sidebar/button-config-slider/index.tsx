@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { ConfigSliderProps } from "./types";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 
-export const ButtonConfigSlider: FC<ConfigSliderProps> = (props) => {
+export const ButtonConfigSlider: FC<ConfigSliderProps> = memo((props) => {
   const { label, sliderConfig, sliderDesc } = props;
 
   return (
@@ -15,4 +15,4 @@ export const ButtonConfigSlider: FC<ConfigSliderProps> = (props) => {
       {sliderDesc && <span className="w-full text-right">{sliderDesc}</span>}
     </div>
   );
-};
+});

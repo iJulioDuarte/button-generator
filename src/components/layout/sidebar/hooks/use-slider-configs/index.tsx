@@ -3,93 +3,125 @@ import {
   useButtonConfigs,
 } from "@/context/use-button-configs";
 import { ConfigSliderProps } from "../../button-config-slider/types";
+import { useMemo } from "react";
 
 export const useSliderConfigs = () => {
-  const { buttonConfigs, setButtonConfigs } = useButtonConfigs();
+  const {
+    setborderRadius,
+    setborderWidth,
+    setfontSize,
+    setfontWeight,
+    setheight,
+    setwidth,
+    borderRadius,
+    borderWidth,
+    fontSize,
+    fontWeight,
+    height,
+    width,
+  } = useButtonConfigs();
 
-  const widthSliderConfig: ConfigSliderProps = {
-    label: "Width",
-    sliderConfig: {
-      min: 1,
-      max: 1000,
-      step: 1,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, width: value[0] }));
+  const widthSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Width",
+      sliderConfig: {
+        min: 1,
+        max: 1000,
+        step: 1,
+        onValueChange: (value) => {
+          setwidth(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.width ?? 0],
       },
-      defaultValue: [sliderDefaultValues.width ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.width ?? 0}px`,
-  };
+      sliderDesc: `${width ?? 0}px`,
+    }),
+    [setwidth, width]
+  );
 
-  const heightSliderConfig: ConfigSliderProps = {
-    label: "Height",
-    sliderConfig: {
-      min: 1,
-      max: 1000,
-      step: 1,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, height: value[0] }));
+  const heightSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Height",
+      sliderConfig: {
+        min: 1,
+        max: 1000,
+        step: 1,
+        onValueChange: (value) => {
+          setheight(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.height ?? 0],
       },
-      defaultValue: [sliderDefaultValues.height ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.height ?? 0}px`,
-  };
+      sliderDesc: `${height ?? 0}px`,
+    }),
+    [height, setheight]
+  );
 
-  const borderRadiusSliderConfig: ConfigSliderProps = {
-    label: "Border Radius",
-    sliderConfig: {
-      min: 1,
-      max: 300,
-      step: 1,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, borderRadius: value[0] }));
+  const borderRadiusSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Border Radius",
+      sliderConfig: {
+        min: 1,
+        max: 300,
+        step: 1,
+        onValueChange: (value) => {
+          setborderRadius(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.borderRadius ?? 0],
       },
-      defaultValue: [sliderDefaultValues.borderRadius ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.borderRadius ?? 0}px`,
-  };
+      sliderDesc: `${borderRadius ?? 0}px`,
+    }),
+    [borderRadius, setborderRadius]
+  );
 
-  const fontSizeSliderConfig: ConfigSliderProps = {
-    label: "Font Size",
-    sliderConfig: {
-      min: 1,
-      max: 100,
-      step: 1,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, fontSize: value[0] }));
+  const fontSizeSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Font Size",
+      sliderConfig: {
+        min: 1,
+        max: 100,
+        step: 1,
+        onValueChange: (value) => {
+          setfontSize(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.fontSize ?? 0],
       },
-      defaultValue: [sliderDefaultValues.fontSize ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.fontSize ?? 0}px`,
-  };
+      sliderDesc: `${fontSize ?? 0}px`,
+    }),
+    [fontSize, setfontSize]
+  );
 
-  const fontWeightSliderConfig: ConfigSliderProps = {
-    label: "Font Weight",
-    sliderConfig: {
-      min: 100,
-      max: 900,
-      step: 100,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, fontWeight: value[0] }));
+  const fontWeightSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Font Weight",
+      sliderConfig: {
+        min: 100,
+        max: 900,
+        step: 100,
+        onValueChange: (value) => {
+          setfontWeight(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.fontWeight ?? 0],
       },
-      defaultValue: [sliderDefaultValues.fontWeight ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.fontWeight ?? 0}`,
-  };
+      sliderDesc: `${fontWeight ?? 0}`,
+    }),
+    [fontWeight, setfontWeight]
+  );
 
-  const borderWidthSliderConfig: ConfigSliderProps = {
-    label: "Border Width",
-    sliderConfig: {
-      min: 0,
-      max: 25,
-      step: 1,
-      onValueChange: (value) => {
-        setButtonConfigs((v) => ({ ...v, borderWidth: value[0] }));
+  const borderWidthSliderConfig: ConfigSliderProps = useMemo(
+    () => ({
+      label: "Border Width",
+      sliderConfig: {
+        min: 0,
+        max: 25,
+        step: 1,
+        onValueChange: (value) => {
+          setborderWidth(value[0]);
+        },
+        defaultValue: [sliderDefaultValues.borderWidth ?? 0],
       },
-      defaultValue: [sliderDefaultValues.borderWidth ?? 0],
-    },
-    sliderDesc: `${buttonConfigs?.borderWidth ?? 0}px`,
-  };
+      sliderDesc: `${borderWidth ?? 0}px`,
+    }),
+    [borderWidth, setborderWidth]
+  );
 
   return {
     widthSliderConfig,
