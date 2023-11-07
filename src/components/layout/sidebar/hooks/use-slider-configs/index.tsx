@@ -7,12 +7,12 @@ import { useMemo } from "react";
 
 export const useSliderConfigs = () => {
   const {
-    setborderRadius,
-    setborderWidth,
-    setfontSize,
-    setfontWeight,
-    setheight,
-    setwidth,
+    setBorderRadius,
+    setBorderWidth,
+    setFontSize,
+    setFontWeight,
+    setHeight,
+    setWidth,
     borderRadius,
     borderWidth,
     fontSize,
@@ -29,13 +29,13 @@ export const useSliderConfigs = () => {
         max: 1000,
         step: 1,
         onValueChange: (value) => {
-          setwidth(value[0]);
+          setWidth(value[0]);
         },
         defaultValue: [sliderDefaultValues.width ?? 0],
       },
       sliderDesc: `${width ?? 0}px`,
     }),
-    [setwidth, width]
+    [setWidth, width]
   );
 
   const heightSliderConfig: ConfigSliderProps = useMemo(
@@ -46,13 +46,13 @@ export const useSliderConfigs = () => {
         max: 1000,
         step: 1,
         onValueChange: (value) => {
-          setheight(value[0]);
+          setHeight(value[0]);
         },
         defaultValue: [sliderDefaultValues.height ?? 0],
       },
       sliderDesc: `${height ?? 0}px`,
     }),
-    [height, setheight]
+    [height, setHeight]
   );
 
   const borderRadiusSliderConfig: ConfigSliderProps = useMemo(
@@ -63,13 +63,13 @@ export const useSliderConfigs = () => {
         max: 300,
         step: 1,
         onValueChange: (value) => {
-          setborderRadius(value[0]);
+          setBorderRadius(value[0]);
         },
         defaultValue: [sliderDefaultValues.borderRadius ?? 0],
       },
       sliderDesc: `${borderRadius ?? 0}px`,
     }),
-    [borderRadius, setborderRadius]
+    [borderRadius, setBorderRadius]
   );
 
   const fontSizeSliderConfig: ConfigSliderProps = useMemo(
@@ -80,13 +80,13 @@ export const useSliderConfigs = () => {
         max: 100,
         step: 1,
         onValueChange: (value) => {
-          setfontSize(value[0]);
+          setFontSize(value[0]);
         },
         defaultValue: [sliderDefaultValues.fontSize ?? 0],
       },
       sliderDesc: `${fontSize ?? 0}px`,
     }),
-    [fontSize, setfontSize]
+    [fontSize, setFontSize]
   );
 
   const fontWeightSliderConfig: ConfigSliderProps = useMemo(
@@ -97,13 +97,13 @@ export const useSliderConfigs = () => {
         max: 900,
         step: 100,
         onValueChange: (value) => {
-          setfontWeight(value[0]);
+          setFontWeight(value[0]);
         },
         defaultValue: [sliderDefaultValues.fontWeight ?? 0],
       },
       sliderDesc: `${fontWeight ?? 0}`,
     }),
-    [fontWeight, setfontWeight]
+    [fontWeight, setFontWeight]
   );
 
   const borderWidthSliderConfig: ConfigSliderProps = useMemo(
@@ -114,13 +114,13 @@ export const useSliderConfigs = () => {
         max: 25,
         step: 1,
         onValueChange: (value) => {
-          setborderWidth(value[0]);
+          setBorderWidth(value[0]);
         },
         defaultValue: [sliderDefaultValues.borderWidth ?? 0],
       },
       sliderDesc: `${borderWidth ?? 0}px`,
     }),
-    [borderWidth, setborderWidth]
+    [borderWidth, setBorderWidth]
   );
 
   return {

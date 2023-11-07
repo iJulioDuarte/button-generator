@@ -12,7 +12,7 @@ export type ButtonConfigs = {
 };
 
 type ButtonConfigToSetFunctions<TData> = {
-  [key in keyof TData & string as `set${key}`]: (
+  [key in keyof TData & string as `set${Capitalize<key>}`]: (
     newValue: NonNullable<TData[key]>
   ) => void;
 };

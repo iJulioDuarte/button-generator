@@ -13,7 +13,7 @@ import { useSliderConfigs } from "./hooks/use-slider-configs";
 import { ColorPicker } from "./color-picker";
 
 export const Sidebar: FC = () => {
-  const { setlabel } = useButtonConfigs();
+  const { setLabel } = useButtonConfigs();
 
   const {
     borderRadiusSliderConfig,
@@ -62,13 +62,13 @@ export const Sidebar: FC = () => {
         <div>
           <Label>Label</Label>
           <Input
-            onChange={(value) => setlabel(value.target.value)}
+            onChange={(value) => setLabel(value.target.value)}
             defaultValue={sliderDefaultValues.label}
           />
         </div>
       </section>
     ),
-    [setlabel]
+    [setLabel]
   );
 
   return (
