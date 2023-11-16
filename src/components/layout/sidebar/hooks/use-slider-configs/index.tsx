@@ -123,12 +123,25 @@ export const useSliderConfigs = () => {
     [borderWidth, setBorderWidth]
   );
 
+  const sliderConfigs = useMemo(
+    () => [
+      widthSliderConfig,
+      heightSliderConfig,
+      borderRadiusSliderConfig,
+      fontSizeSliderConfig,
+      fontWeightSliderConfig,
+      borderWidthSliderConfig,
+    ],
+    [
+      borderRadiusSliderConfig,
+      borderWidthSliderConfig,
+      fontSizeSliderConfig,
+      fontWeightSliderConfig,
+      heightSliderConfig,
+      widthSliderConfig,
+    ]
+  );
   return {
-    widthSliderConfig,
-    heightSliderConfig,
-    borderRadiusSliderConfig,
-    fontSizeSliderConfig,
-    fontWeightSliderConfig,
-    borderWidthSliderConfig,
+    sliderConfigs,
   };
 };

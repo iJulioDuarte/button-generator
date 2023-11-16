@@ -23,34 +23,17 @@ export const Sidebar: FC = () => {
     setBorderColor,
   } = useButtonConfigs();
 
-  const {
-    borderRadiusSliderConfig,
-    borderWidthSliderConfig,
-    fontSizeSliderConfig,
-    fontWeightSliderConfig,
-    heightSliderConfig,
-    widthSliderConfig,
-  } = useSliderConfigs();
+  const { sliderConfigs } = useSliderConfigs();
 
   const buttonConfigsSection = useMemo(
     () => (
-      <section id="button-configs" className="space-y-3">
-        <ButtonConfigSlider {...widthSliderConfig} />
-        <ButtonConfigSlider {...heightSliderConfig} />
-        <ButtonConfigSlider {...borderRadiusSliderConfig} />
-        <ButtonConfigSlider {...fontSizeSliderConfig} />
-        <ButtonConfigSlider {...fontWeightSliderConfig} />
-        <ButtonConfigSlider {...borderWidthSliderConfig} />
+      <section id="sliders" className="space-y-3">
+        {sliderConfigs.map((config) => (
+          <ButtonConfigSlider {...config} />
+        ))}
       </section>
     ),
-    [
-      borderRadiusSliderConfig,
-      borderWidthSliderConfig,
-      fontSizeSliderConfig,
-      fontWeightSliderConfig,
-      heightSliderConfig,
-      widthSliderConfig,
-    ]
+    [sliderConfigs]
   );
 
   const colorPickersSection = useMemo(
