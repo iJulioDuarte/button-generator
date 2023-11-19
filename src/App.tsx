@@ -4,12 +4,10 @@ import { Header } from "./components/layout/header";
 
 export const App = () => {
   return (
-    <div className="min-w-screen min-h-screen flex flex-col">
+    <div className="max-h-screen grid-rows-12 grid-cols-12 grid-flow-row grid overflow-hidden">
       <Header />
-      <main className="flex-1 p-6 flex gap-6">
-        <Sidebar />
-        <Content />
-      </main>
+      <Sidebar />
+      <Content />
     </div>
   );
 };

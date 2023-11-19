@@ -82,8 +82,8 @@ export const Sidebar: FC = () => {
   );
 
   return (
-    <aside className="w-80 space-y-6 flex gap-3">
-      <form className="space-y-6 w-80">
+    <aside className="w-full h-full overflow-auto space-y-6 flex gap-3 col-span-3 row-span-11 p-4 border-r border-border">
+      <form className="space-y-6 w-full">
         {labelInputSection}
 
         {buttonConfigsSection}
@@ -92,12 +92,11 @@ export const Sidebar: FC = () => {
 
         <Separator />
 
-        <Button className="w-full gap-2" type="button">
+        <Button className="w-full" type="button">
           <Pen className="w-4 h-4" />
           Gerar Código
         </Button>
       </form>
-      <Separator orientation="vertical" className="h-full" />
     </aside>
   );
 };

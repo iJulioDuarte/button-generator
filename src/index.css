@@ -30,6 +30,7 @@
 @layer base {
   * {
     @apply border-border;
+    @apply break-words;
   }
   body {
     @apply bg-background text-foreground;

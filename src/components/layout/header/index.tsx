@@ -4,7 +4,7 @@ import { Github } from "lucide-react";
 import { FC } from "react";
 
 export const Header: FC = () => (
-  <header className="px-6 py-3 flex items-center justify-between border-b">
+  <header className="px-6 py-3 flex items-center justify-between border-b col-span-full row-span-1">
     <h1 className="text-xl font-bold">Button Generator</h1>
 
     <div className="flex items-center gap-3">
