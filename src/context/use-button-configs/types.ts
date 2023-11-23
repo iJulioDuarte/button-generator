@@ -1,15 +1,6 @@
-export type ButtonConfigs = {
-  label?: string;
-  width?: number;
-  height?: number;
-  borderRadius?: number;
-  backgroundColor?: string;
-  color?: string;
-  fontWeight?: number;
-  fontSize?: number;
-  borderWidth?: number;
-  borderColor?: string;
-};
+import { StandartProperties } from "@/types";
+
+export type ButtonConfigs = Partial<StandartProperties>;
 
 type ButtonConfigToSetFunctions<TData> = {
   [key in keyof TData & string as `set${Capitalize<key>}`]: (
