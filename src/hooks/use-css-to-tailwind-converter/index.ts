@@ -38,8 +38,6 @@ export const useCssToTailwindConverter = () => {
           return;
         }
 
-        console.log(key);
-
         convertedValues[keyAsKeyof] = convertedValues[keyAsKeyof].replace(
           "{value}",
           (values[keyAsKeyof] ?? 0).toString()

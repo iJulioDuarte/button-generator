@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Pen } from "lucide-react";
-import { FC, useMemo, useState } from "react";
+import { FC, useMemo } from "react";
 import { ButtonConfigSlider } from "./button-config-slider";
 import {
   sliderDefaultValues,
@@ -11,8 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSliderConfigs } from "./hooks/use-slider-configs";
 import { ColorPicker } from "./color-picker";
-import { useCssToTailwindConverter } from "@/hooks/use-css-to-tailwind-converter";
-import { ConvertionStandartsType } from "@/hooks/use-css-to-tailwind-converter/types";
 
 export const Sidebar: FC = () => {
   const {
@@ -25,12 +23,7 @@ export const Sidebar: FC = () => {
     setBorderColor,
   } = useButtonConfigs();
 
-  const buttonConfigs = useButtonConfigs();
-
-  const [tailwindCode, setTailwindCode] = useState<ConvertionStandartsType>();
-
   const { sliderConfigs } = useSliderConfigs();
-  const { convertCssToTailwind } = useCssToTailwindConverter();
 
   const buttonConfigsSection = useMemo(
     () => (
@@ -97,23 +90,9 @@ export const Sidebar: FC = () => {
 
         {colorPickersSection}
 
-        {tailwindCode && (
-          <span>
-            {Object.keys(tailwindCode).map((key) => (
-              <span>{tailwindCode[key as keyof typeof tailwindCode]}</span>
-            ))}
-          </span>
-        )}
-
         <Separator />
 
-        <Button
-          className="w-full"
-          type="button"
-          onClick={() => {
-            setTailwindCode(convertCssToTailwind(buttonConfigs));
-          }}
-        >
+        <Button className="w-full" type="button">
           <Pen className="w-4 h-4" />
           Gerar Código
         </Button>
