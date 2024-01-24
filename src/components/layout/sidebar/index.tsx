@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Pen } from "lucide-react";
-import { FC, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 import { ButtonConfigSlider } from "./button-config-slider";
 import {
   sliderDefaultValues,
@@ -11,8 +11,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSliderConfigs } from "./hooks/use-slider-configs";
 import { ColorPicker } from "./color-picker";
+import { Modal } from "@/components/ui/modal";
 
 export const Sidebar: FC = () => {
+  const [openModal, setOpenModal] = useState(false);
+
   const {
     setLabel,
     color,
@@ -91,6 +94,19 @@ export const Sidebar: FC = () => {
         {colorPickersSection}
 
         <Separator />
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            setOpenModal(true);
+          }}
+        >
+          Open
+        </Button>
+        {openModal && (
+          <Modal onHide={() => setOpenModal(false)} title="New Modal">
+            TESTE
+          </Modal>
+        )}
 
         <Button className="w-full" type="button">
           <Pen className="w-4 h-4" />
