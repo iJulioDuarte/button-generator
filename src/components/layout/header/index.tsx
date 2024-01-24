@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Github } from "lucide-react";
 import { FC } from "react";
+import { Github } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export const Header: FC = () => (
   <header className="px-6 py-3 flex items-center justify-between border-b col-span-full row-span-1">
