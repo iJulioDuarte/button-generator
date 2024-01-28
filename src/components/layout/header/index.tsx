@@ -1,12 +1,25 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Github, Linkedin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { twMerge } from "tailwind-merge";
-
+import { LinkButtonProps } from "./types";
 export const Header: FC = () => {
-  const [showText, setShowText] = useState(false);
+  const LinkButtons = (buttons: LinkButtonProps[]) =>
+    buttons.map((button) => {
+      const { icon, link, name } = button;
+
+      return (
+        <a href={link} target="_blank">
+          <Button variant={"outline"}>
+            {icon}
+            {name}
+          </Button>
+        </a>
+      );
+    });
+
+  const defaultIconsClassname = "h-4 w-4 mr-2";
 
   return (
     <header className="px-6 py-3 flex items-center justify-between border-b col-span-full row-span-1">
@@ -18,31 +31,18 @@ export const Header: FC = () => {
         </span>
         <Separator orientation="vertical" className="h-6" />
 
-        <a
-          href="https://github.com/iJulioDuarte/button-generator"
-          target="_blank"
-        >
-          <Button variant={"outline"}>
-            <Github className="h-4 w-4 mr-2" />
-            Github
-          </Button>
-        </a>
-        <a href="https://www.linkedin.com/in/ijulio-duarte/" target="_blank">
-          <Button
-            variant={"secondary"}
-            onMouseEnter={() => {
-              setShowText(true);
-            }}
-            onMouseLeave={() => {
-              setShowText(false);
-            }}
-            className={twMerge()}
-          >
-            <Linkedin className="h-4 w-4 mr-2" />
-
-            {showText && "Linkedin"}
-          </Button>
-        </a>
+        {LinkButtons([
+          {
+            icon: <Github className={defaultIconsClassname} />,
+            link: "https://github.com/iJulioDuarte/button-generator",
+            name: "Github",
+          },
+          {
+            icon: <Linkedin className={defaultIconsClassname} />,
+            link: "https://www.linkedin.com/in/ijulio-duarte/",
+            name: "LinkedIn",
+          },
+        ])}
       </div>
     </header>
   );
