@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 import {
   sliderDefaultValues,
   useButtonConfigs,
@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { Pen } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { useSliderConfigs } from "./hooks/use-slider-configs";
+import { CodeModal } from "./code-modal";
 
 export const Sidebar: FC = () => {
   const {
@@ -23,6 +24,8 @@ export const Sidebar: FC = () => {
     borderColor,
     setBorderColor,
   } = useButtonConfigs();
+
+  const [isOpenCodeModal, setIsOpenCodeModal] = useState(false);
 
   const { sliderConfigs } = useSliderConfigs();
 
@@ -94,7 +97,15 @@ export const Sidebar: FC = () => {
         <Separator />
 
         <div className="pb-4">
-          <Button className="w-full" type="button">
+          <CodeModal
+            isOpenCodeModal={isOpenCodeModal}
+            setIsOpenCodeModal={setIsOpenCodeModal}
+          />
+          <Button
+            className="w-full"
+            type="button"
+            onClick={() => setIsOpenCodeModal(true)}
+          >
             <Pen className="w-4 h-4" />
             Gerar Código
           </Button>

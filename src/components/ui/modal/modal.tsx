@@ -5,6 +5,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FC } from "react";
 import { CommonContentProps, ModalProps } from "./types";
+import { Button } from "../button";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -20,7 +21,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
+        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 pb-3 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
         className
       )}
       {...props}
@@ -54,15 +55,20 @@ DialogHeader.displayName = "DialogHeader";
 
 const DialogFooter = ({
   className,
+  onHide,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
+}: React.HTMLAttributes<HTMLDivElement> & CommonContentProps) => (
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
       className
     )}
     {...props}
-  />
+  >
+    <Button className="bg-secondary" onClick={onHide}>
+      Fechar
+    </Button>
+  </div>
 );
 DialogFooter.displayName = "DialogFooter";
 
@@ -94,15 +100,15 @@ const DialogDescription = React.forwardRef<
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 const Modal: FC<ModalProps> = (props) => {
-  const { onHide, children, title } = props;
+  const { onHide, children, title, open, customFooter } = props;
 
-  //continuar modal
   return (
     <>
-      <Dialog open={true} modal={false} defaultOpen={true}>
+      <Dialog open={open} modal={false} defaultOpen={open}>
         <DialogContent onHide={onHide}>
           {title && <DialogTitle>{title}</DialogTitle>}
-          {children}
+          <div>{children}</div>
+          {customFooter ?? <DialogFooter onHide={onHide} />}
         </DialogContent>
       </Dialog>
     </>

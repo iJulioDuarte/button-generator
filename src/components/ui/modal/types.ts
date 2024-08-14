@@ -7,5 +7,6 @@ export type CommonContentProps = {
 export type ModalProps = PropsWithChildren &
   CommonContentProps & {
     title?: ReactNode;
-    footer?: ReactNode;
+    customFooter?: ReactNode;
+    open: boolean;
   };
