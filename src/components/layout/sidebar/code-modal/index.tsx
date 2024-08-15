@@ -22,7 +22,11 @@ export const CodeModal = (props: {
       )
         return;
 
-      validConfigs[key as keyof ValidConfigs] = configs[keyAsKeyof];
+      const keyAsKeyofValidConfigs = key as keyof ValidConfigs;
+
+      validConfigs[keyAsKeyofValidConfigs] = (configs as ValidConfigs)[
+        keyAsKeyofValidConfigs
+      ];
     });
 
     return Object.keys(validConfigs).map((key, index) => {
